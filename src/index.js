@@ -5,6 +5,8 @@ const deepClone = (data) => {
       copyData = new Date(data)
     } else if (data instanceof RegExp) {
       copyData = new RegExp(data.source, data.flags)
+    } else if (data instanceof Array) {
+      copyData = new Array()
     } else {
       copyData = new Object
     }
