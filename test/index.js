@@ -42,5 +42,27 @@ describe('deepClone', () => {
       assert(booleanS === copyData)
     })
   })
-
+  describe('能够复制普通对象', () => {
+    const data = { stringS: 'zch', numberS: 1, nullS: null, undefinedS: undefined, symbolS: Symbol(), booleanS: true }
+    const copyData = deepClone(data)
+    assert(data !== copyData)
+    it('能够复制对象中的字符串', () => {
+      assert(data.stringS === copyData.stringS)
+    })
+    it('能够复制对象中的数字', () => {
+      assert(data.numberS === copyData.numberS)
+    })
+    it('能够复制对象中的null', () => {
+      assert(data.nullS === copyData.nullS)
+    })
+    it('能够复制对象中的undefined', () => {
+      assert(data.undefinedS === copyData.undefinedS)
+    })
+    it('能够复制对象中的symbol', () => {
+      assert(data.symbolS === copyData.symbolS)
+    })
+    it('能够复制对象中的布尔值', () => {
+      assert(data.booleanS === copyData.booleanS)
+    })
+  })
 })
