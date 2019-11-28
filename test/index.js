@@ -65,4 +65,11 @@ describe('deepClone', () => {
       assert(data.booleanS === copyData.booleanS)
     })
   })
+  describe('能够复制复杂类型', () => {
+    it('能够复制日期类型', () => {
+      const data = new Date()
+      const copyData = deepClone(data)
+      assert(data !== copyData)
+    })
+  })
 })

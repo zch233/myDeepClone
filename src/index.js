@@ -1,6 +1,11 @@
 const deepClone = (data) => {
   if (data instanceof Object) {
-      copyData = new Object()
+    let copyData
+    if (data instanceof Date) {
+      copyData = new Date(data)
+    } else {
+      copyData = new Object
+    }
     for (let key in data) {
       copyData[key] = deepClone(data[key])
     }
