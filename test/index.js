@@ -77,5 +77,16 @@ describe('deepClone', () => {
       assert(data.stringS === copyData.stringS)
       assert(data.numberS === copyData.numberS)
     })
+    it('能够复制正则类型', () => {
+      const data = /\d+/gi
+      data.stringS = 'zch'
+      data.numberS = 2333
+      data.regExpS = new RegExp('\\d')
+      const copyData = deepClone(data)
+      assert(data !== copyData)
+      assert(data.regExpS !== copyData.regExpS)
+      assert(data.stringS === copyData.stringS)
+      assert(data.numberS === copyData.numberS)
+    })
   })
 })
