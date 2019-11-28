@@ -68,8 +68,14 @@ describe('deepClone', () => {
   describe('能够复制复杂类型', () => {
     it('能够复制日期类型', () => {
       const data = new Date()
+      data.stringS = 'zch'
+      data.numberS = 2333
+      data.dateS = new Date()
       const copyData = deepClone(data)
       assert(data !== copyData)
+      assert(data.dateS !== copyData.dateS)
+      assert(data.stringS === copyData.stringS)
+      assert(data.numberS === copyData.numberS)
     })
   })
 })
