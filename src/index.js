@@ -1,13 +1,13 @@
 const deepClone = (data) => {
-  const copyData = {}
   if (data instanceof Object) {
+      copyData = new Object()
     for (let key in data) {
-      copyData[key] = data[key]
+      copyData[key] = deepClone(data[key])
     }
+    return copyData
   } else {
     return data
   }
-  return copyData
 }
 
 module.exports = deepClone
