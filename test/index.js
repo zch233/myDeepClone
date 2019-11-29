@@ -103,5 +103,11 @@ describe('deepClone', () => {
       assert(data[3] === copyData[3])
       assert(data[4] === copyData[4])
     })
+    it('能够复制环', () => {
+      const data = { stringS: 'zch' }
+      data.self = data
+      const copyData = deepClone(data)
+      assert(data !== copyData)
+    })
   })
 })
