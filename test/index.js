@@ -108,6 +108,8 @@ describe('deepClone', () => {
       data.self = data
       const copyData = deepClone(data)
       assert(data !== copyData)
+      assert(data.stringS === copyData.stringS)
+      assert(data.self !== copyData.self)
     })
   })
 })

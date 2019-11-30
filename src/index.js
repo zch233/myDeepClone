@@ -1,4 +1,4 @@
-const deepClone = (data) => {
+const deepClone = (data, cache = []) => {
   if (data instanceof Object) {
     let copyData
     if (data instanceof Date) {
@@ -11,7 +11,12 @@ const deepClone = (data) => {
       copyData = new Object
     }
     for (let key in data) {
-      copyData[key] = deepClone(data[key])
+      if (cache.includes(data[key])) {
+        copyData[key] = data[key]
+      } else {
+        cache.push(data[key])
+        copyData[key] = deepClone(data[key], cache)
+      }
     }
     return copyData
   } else {
