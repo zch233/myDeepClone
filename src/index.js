@@ -1,4 +1,4 @@
-const deepClone = (data, cache = []) => {
+const deepClone = (data) => {
   if (data instanceof Object) {
     let copyData
     if (data instanceof Date) {
@@ -7,16 +7,15 @@ const deepClone = (data, cache = []) => {
       copyData = new RegExp(data.source, data.flags)
     } else if (data instanceof Array) {
       copyData = new Array()
+    } else if (data instanceof Function) {
+      copyData = function () {
+        return data.apply(this, arguments)
+      }
     } else {
       copyData = new Object
     }
     for (let key in data) {
-      if (cache.includes(data[key])) {
-        copyData[key] = data[key]
-      } else {
-        cache.push(data[key])
-        copyData[key] = deepClone(data[key], cache)
-      }
+      copyData[key] = deepClone(data[key])
     }
     return copyData
   } else {
