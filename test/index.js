@@ -114,7 +114,7 @@ describe('deepClone', () => {
       assert(data.objects !== copyData.objects)
       assert(data.objects.numberS === copyData.objects.numberS)
     })
-    xit('能够复制环', () => {
+    it('能够复制环', () => {
       const data = { stringS: 'zch' }
       data.self = data
       const copyData = deepClone(data)
