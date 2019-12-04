@@ -122,5 +122,15 @@ describe('deepClone', () => {
       assert(data.stringS === copyData.stringS)
       assert(data.self !== copyData.self)
     })
+    xit('不会爆栈', () => {
+      const data = {}
+      let zch = data
+      for (let i=0;i<100000;i++) {
+        zch.stringS = { stringS: 'zch' }
+        zch = zch.stringS
+      }
+      const copyData = deepClone(data)
+      assert(data !== copyData)
+    })
   })
 })
