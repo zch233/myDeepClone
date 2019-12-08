@@ -1,6 +1,6 @@
-const deepClone = (data, cache = [], xxx) => {
+const deepClone = (data, cache = [], copiedData) => {
   if (cache.includes(data)) {
-    return xxx
+    return copiedData
   }
   if (data instanceof Object) {
     let copyData
@@ -17,7 +17,7 @@ const deepClone = (data, cache = [], xxx) => {
     }
     cache.push(data)
     for (let key in data) {
-      copyData[key] = deepClone(data[key], cache, copyData)
+      copyData[key] = deepClone(data[key], cache, copiedData)
     }
     return copyData
   } else {
